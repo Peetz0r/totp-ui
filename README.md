@@ -1,2 +1,6 @@
-# totp-ui
-User interfaces for totp using oathtool
+# TOTP UI
+Three simple user interfaces for oathtool OTP
+
+* plain cli
+* dialog
+* zenity
