@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ./totp-ui-config
+
+while true; do
+	(
+	    cols=$(($(tput cols)-15))
+	    printf "\r%13s[%${cols}s]\rOTP: $(oathtool $TOTP_UI_OATHTOOL_OPTIONS $TOTP_UI_SECRET)  ";
+	    printf "[%$(date "+s=%s.%N%%30; scale=20; a=$cols/30*s; scale=0; a/1" | bc)s" | tr ' ' '#';
+	) | dd 2> /dev/null
+	sleep 0.1;
+done;

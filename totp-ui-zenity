@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ./totp-ui-config
+
+(
+    echo 100;
+    while true; do
+        echo -ne "$(echo '3.33*('$(date +%s.%N)'%30)' | bc)\n#";
+        oathtool $TOTP_UI_OATHTOOL_OPTIONS $TOTP_UI_SECRET;
+        sleep 0.1;
+    done;
+) | zenity --progress --auto-kill --title='TOTP UI' --no-cancel;
